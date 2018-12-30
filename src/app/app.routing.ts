@@ -9,7 +9,7 @@ import { ProductComponent } from './product';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+    { path: 'register', component: RegisterComponent },
     { path: 'product', component: ProductComponent, canActivate: [AuthGuard]},
 
     // otherwise redirect to home

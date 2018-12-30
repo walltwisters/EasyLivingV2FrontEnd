@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        debugger;
         this.productForm = this.formBuilder.group({
             name : [''],
             image: [],
@@ -25,10 +26,12 @@ export class ProductComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
+        debugger;
         this.productService.create(this.productForm.value).
-            pipe(first()).
-            subscribe()
+            pipe( first() ).
+            subscribe(
+                
+            )
     }
 }
 

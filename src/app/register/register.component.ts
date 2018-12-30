@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService) { }
+        private alertService: AlertService
+    ) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
