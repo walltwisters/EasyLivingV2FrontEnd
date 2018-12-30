@@ -17,10 +17,12 @@ export class ProductComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
         this.productForm = this.formBuilder.group({
             name : [''],
-            image: [],
+            price: [''],
+            description: ['']
+
+            //image: [],
         });
     }
 

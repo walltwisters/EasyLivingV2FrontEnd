@@ -16,7 +16,7 @@ export class ProductService {
 
   create(product: Product){
     debugger;
-    return this.http.post(`${config.apiUrl}/products/create`, Product);
+    return this.http.post(`${config.apiUrl}/products/create`, product);
   }
 
   update() {
