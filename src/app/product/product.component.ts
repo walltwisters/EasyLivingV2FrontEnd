@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
@@ -11,6 +11,8 @@ export class ProductComponent implements OnInit {
     loading = false;
     submitted = false;
 
+    @ViewChild('fileInput') fileInput: ElementRef;
+
     constructor(
         private formBuilder: FormBuilder,
         private productService: ProductService,
@@ -18,22 +20,48 @@ export class ProductComponent implements OnInit {
 
     ngOnInit() {
         this.productForm = this.formBuilder.group({
-            name : [''],
-            price: [''],
-            description: ['']
+            name : ['', Validators.required],
+            price: ['', Validators.required],
+            description: ['', Validators.required],
+            image: null
+            // image: this.formBuilder.group({
+            //     name: [''],
+            //     mime: [''],
+            //     value: [null]
 
-            //image: [],
+            //})
         });
     }
 
     onSubmit() {
         this.submitted = true;
-        debugger;
-        this.productService.create(this.productForm.value).
+
+       
+        var product = this.productForm.value;
+ 
+        this.productService.create(product).
             pipe( first() ).
             subscribe(
                 
             )
+    }
+
+    async onImageAdded(event: any) {
+        debugger;
+        let reader = new FileReader();
+        if(event.target.files && event.target.files.length > 0) {
+            let file = event.target.files[0];
+            reader.onload = () => {
+                debugger;
+                let image = this.productForm.get('image');
+                this.productForm.get('image').setValue({
+                    name: file.name,
+                    mime: file.type,
+                    value: reader.result.split(',')[1]
+                })
+            };
+            await reader.readAsDataURL(file);
+        }
     }
 }
 
