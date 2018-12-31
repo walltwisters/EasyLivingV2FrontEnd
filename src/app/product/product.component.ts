@@ -35,11 +35,7 @@ export class ProductComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
-       
-        var product = this.productForm.value;
- 
-        this.productService.create(product).
+        this.productService.create(this.productForm.value).
             pipe( first() ).
             subscribe(
                 
@@ -47,13 +43,10 @@ export class ProductComponent implements OnInit {
     }
 
     async onImageAdded(event: any) {
-        debugger;
         let reader = new FileReader();
         if(event.target.files && event.target.files.length > 0) {
             let file = event.target.files[0];
             reader.onload = () => {
-                debugger;
-                let image = this.productForm.get('image');
                 this.productForm.get('image').setValue({
                     name: file.name,
                     mime: file.type,
