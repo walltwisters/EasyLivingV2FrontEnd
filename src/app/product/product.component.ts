@@ -2,7 +2,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { Product } from '../_models';
 import { ProductService } from '../_services';
 
 @Component({templateUrl: 'product.component.html'})
@@ -10,6 +9,7 @@ export class ProductComponent implements OnInit {
     productForm: FormGroup;
     loading = false;
     submitted = false;
+    formData: FormData;
 
     @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -31,10 +31,15 @@ export class ProductComponent implements OnInit {
 
             //})
         });
+        this.formData = null;
     }
 
     onSubmit() {
         this.submitted = true;
+        // let input = new FormData();
+        // this.formData.append('name', this.productForm.value.name);
+        // this.formData.append('description', this.productForm.value.description);
+        // this.formData.append('price', this.productForm.value.price);
         this.productService.create(this.productForm.value).
             pipe( first() ).
             subscribe(
@@ -43,30 +48,26 @@ export class ProductComponent implements OnInit {
     }
 
     async onImageAdded(event: any) {
+        if(this.formData){
+            this.formData = null;
+        };
+        this.formData = new FormData();
         let reader = new FileReader();
         if(event.target.files && event.target.files.length > 0) {
             let file = event.target.files[0];
-            reader.onload = () => {
-                this.productForm.get('image').setValue({
-                    name: file.name,
-                    mime: file.type,
-                    value: reader.result.split(',')[1]
-                })
-            };
-            await reader.readAsDataURL(file);
+            this.productForm.get('image').setValue(file);
+            //this.formData.append("image", file);
+            // reader.onload = () => {
+            //     this.productForm.get('image').setValue({
+            //         name: file.name,
+            //         mime: file.type,
+            //         value: reader.result.split(',')[1]
+            //     )
+            // };
+            //await reader.readAsDataURL(file);
         }
     }
 }
 
-    // deleteUser(id: number) {
-    //     this.userService.delete(id).pipe(first()).subscribe(() => { 
-    //         this.loadAllUsers() 
-    //     });
-    // }
-
-    // private loadAllUsers() {
-    //     this.userService.getAll().pipe(first()).subscribe(users => { 
-    //         this.users = users; 
-    //     });
-    // }
+   
 
