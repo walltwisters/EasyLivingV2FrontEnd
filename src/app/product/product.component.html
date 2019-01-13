@@ -17,6 +17,13 @@
         <input type="file" (change)="onImageAdded($event)" id="image" class="form-control-file" #fileInput>
     </div>
     <div class="form-group">
+        <label for="category">select categories</label>
+        <select  id="category" class="form-control" multiple formControlName="categories">
+            <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+        </select>
+    </div>
+    <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">Register</button>
     </div>
+   
 </form>

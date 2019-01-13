@@ -2,7 +2,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { ProductService } from '../_services';
+
+import { ProductService, AlertService, CategoryService } from '../_services';
+import { Category } from '../_models';
 
 @Component({templateUrl: 'product.component.html'})
 export class ProductComponent implements OnInit {
@@ -10,12 +12,14 @@ export class ProductComponent implements OnInit {
     loading = false;
     submitted = false;
     formData: FormData;
-
+    categories : Category[] = [];
     @ViewChild('fileInput') fileInput: ElementRef;
 
     constructor(
         private formBuilder: FormBuilder,
         private productService: ProductService,
+        private alertService: AlertService,
+        private categoryService: CategoryService
     ) { }
 
     ngOnInit() {
@@ -23,49 +27,35 @@ export class ProductComponent implements OnInit {
             name : ['', Validators.required],
             price: ['', Validators.required],
             description: ['', Validators.required],
+            categories: [],
             image: null
-            // image: this.formBuilder.group({
-            //     name: [''],
-            //     mime: [''],
-            //     value: [null]
-
-            //})
         });
-        this.formData = null;
+        this.loadAllCategories();
     }
 
     onSubmit() {
         this.submitted = true;
-        // let input = new FormData();
-        // this.formData.append('name', this.productForm.value.name);
-        // this.formData.append('description', this.productForm.value.description);
-        // this.formData.append('price', this.productForm.value.price);
         this.productService.create(this.productForm.value).
             pipe( first() ).
             subscribe(
+                data => {this.alertService.success("product uploaded", true) },
+                error => { this.alertService.error(error) }
                 
             )
     }
 
-    async onImageAdded(event: any) {
-        if(this.formData){
-            this.formData = null;
-        };
-        this.formData = new FormData();
-        let reader = new FileReader();
+    onImageAdded(event: any) {
         if(event.target.files && event.target.files.length > 0) {
             let file = event.target.files[0];
             this.productForm.get('image').setValue(file);
-            //this.formData.append("image", file);
-            // reader.onload = () => {
-            //     this.productForm.get('image').setValue({
-            //         name: file.name,
-            //         mime: file.type,
-            //         value: reader.result.split(',')[1]
-            //     )
-            // };
-            //await reader.readAsDataURL(file);
         }
+    }
+
+    private loadAllCategories() {
+        this.categoryService.get().pipe(first()).subscribe(categories => { 
+            this.categories = categories; 
+            debugger;
+        });
     }
 }
 

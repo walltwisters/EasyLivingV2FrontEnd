@@ -23,11 +23,12 @@ export class ProductService {
 
   create(product: any){
     var fm = new FormData();
+    debugger;
     fm.append("Image", product.image);
     fm.append("Name", product.name);
     fm.append("Description", product.description);
     fm.append("Price", product.price);
-    
+    fm.append("categories", product.categories);
     return this.http.post(`${config.apiUrl}/products/create`, fm);
   }
 
