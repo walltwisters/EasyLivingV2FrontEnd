@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private productService: ProductService,
-        private alertService: AlertService,
+       // private alertService: AlertService,
         private categoryService: CategoryService
     ) { }
 
@@ -38,8 +38,8 @@ export class ProductComponent implements OnInit {
         this.productService.create(this.productForm.value).
             pipe( first() ).
             subscribe(
-                data => {this.alertService.success("product uploaded", true) },
-                error => { this.alertService.error(error) }
+                // data => {this.alertService.success("product uploaded", true) },
+                // error => { this.alertService.error(error) }
                 
             )
     }

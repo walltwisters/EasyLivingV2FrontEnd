@@ -28,7 +28,7 @@ export class ProductService {
     fm.append("Name", product.name);
     fm.append("Description", product.description);
     fm.append("Price", product.price);
-    fm.append("categories", product.categories);
+    fm.append("CategoryIds", product.categories);
     return this.http.post(`${config.apiUrl}/products/create`, fm);
   }
 
