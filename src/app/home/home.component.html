@@ -1,11 +1,40 @@
-﻿<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with Angular 6!!</p>
-<h3>All registered users:</h3>
+﻿<!-- <h1>Hi {{currentUser.firstName}}!</h1>
 <ul>
     <li *ngFor="let user of users">
         {{user.username}} ({{user.firstName}} {{user.lastName}})
         - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
     </li>
-</ul>
-<p><a [routerLink]="['/product']">Add Products</a></p>
-<p><a [routerLink]="['/login']">Logout</a></p>
+</ul> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">EasyLiving</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown" (click)="toggleDropdown()">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Options
+          </a>
+          <div [ngStyle]="{display: dropdown ? 'block' : 'none'}" class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a [routerLink]="['/product']">Products</a>
+            <div class="dropdown-divider"></div>
+            <a [routerLink]="['/register']">Register</a>
+            <div class="dropdown-divider"></div>
+            <a [routerLink]="['/login']">Logout</a>
+          </div>
+        </li>
+      </ul>
+      
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+
+
