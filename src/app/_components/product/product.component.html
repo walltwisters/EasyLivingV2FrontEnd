@@ -21,7 +21,7 @@
         </div>
         <div *ngIf="!edit" class="form-group">
             <label for="image">image</label>
-            <input type="file" (change)="onImageAdded($event)" id="image" class="form-control-file" #fileInput>
+            <input type="file" (change)="onImageAdded($event)" accept="image/*;capture=camera" id="image" class="form-control-file" #fileInput>
         </div>
         <div class="form-group">
             <label for="category">select categories</label>
