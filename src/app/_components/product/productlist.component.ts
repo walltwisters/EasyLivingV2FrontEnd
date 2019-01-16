@@ -23,4 +23,8 @@ export class ProductListComponent implements OnInit {
                 this.products = products;
             });
     }
+
+    public createImagePath(path : String) {
+        return `${config.apiUrl}/${path}`;
+    }
 }

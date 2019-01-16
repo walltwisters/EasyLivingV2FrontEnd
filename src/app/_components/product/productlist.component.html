@@ -2,7 +2,7 @@
 <ul>
     <li *ngFor="let product of products">
         <figure>
-            <img src="{{product.imageUrl}}" alt="">
+            <img [src]="createImagePath(product.imageUrl)" alt="">
         </figure>
         <h3>{{ product.name}}</h3>
         <h5>{{ product.price}}</h5>
