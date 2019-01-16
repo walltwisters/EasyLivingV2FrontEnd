@@ -1,0 +1,35 @@
+.product {
+
+}
+
+.btn--addproduct {
+    float: right;
+    margin: 24px;
+}
+
+.product__image {
+    width: 100%;
+}
+
+.product__image > img {
+    max-width: 100%;
+}
+
+.product__name {
+
+}
+
+.product__price {
+
+}
+
+.product__description {
+
+}
+
+@media (min-width: 600px) {
+    .product__name,
+    .product__price {
+        text-align: center;
+    }
+}

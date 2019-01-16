@@ -1,10 +1,11 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 import { ProductService, AlertService, CategoryService } from '../../_services';
-import { Category } from '../../_models';
+import { Category, Product } from '../../_models';
 
 @Component({templateUrl: 'product.component.html'})
 export class ProductComponent implements OnInit {
@@ -12,10 +13,15 @@ export class ProductComponent implements OnInit {
     loading = false;
     submitted = false;
     formData: FormData;
+    product: any;
     categories : Category[] = [];
+    private idSubscription: any;
+    id : Number = 0;
     @ViewChild('fileInput') fileInput: ElementRef;
 
     constructor(
+        private route : ActivatedRoute,
+        private router: Router,
         private formBuilder: FormBuilder,
         private productService: ProductService,
        // private alertService: AlertService,
@@ -31,6 +37,12 @@ export class ProductComponent implements OnInit {
             image: null
         });
         this.loadAllCategories();
+        this.getRouteId();
+        if(this.id)
+        {
+            this.loadProduct();
+        }
+         
     }
 
     onSubmit() {
@@ -54,8 +66,27 @@ export class ProductComponent implements OnInit {
     private loadAllCategories() {
         this.categoryService.get().pipe(first()).subscribe(categories => { 
             this.categories = categories; 
-            debugger;
         });
+    }
+
+    private getRouteId() {
+        this.idSubscription = this.route.params
+            .subscribe( params => {
+                this.id = params['id'];
+                console.log(this.id);
+            })   
+        }
+            
+    private loadProduct() {
+        return this.productService.show(this.id);
+        //var id = this.route.params.subscribe()
+        // debugger;
+        // this.product = this.route.paramMap.pipe( 
+            // switchMap( (params : ParamMap) => {
+            //     debugger;
+            //     return this.productService.show(params.get("id"))
+            // })
+        //);
     }
 }
 

@@ -5,7 +5,10 @@ import { first } from 'rxjs/operators';
 import { ProductService, AlertService } from '../../_services';
 import { Product } from '../.././_models';
 
-@Component({templateUrl: 'productlist.component.html'})
+@Component({
+    templateUrl: 'productlist.component.html',
+    styleUrls: ['../../../css/app.css', 'productlist.component.css']
+})
 export class ProductListComponent implements OnInit {
     private products: Product[] = [];
 

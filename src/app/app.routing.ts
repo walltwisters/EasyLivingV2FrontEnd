@@ -16,7 +16,8 @@ const appRoutes: Routes = [
             { path: 'user', component: UserComponent } ,
             { path: 'user/new', component: RegisterComponent },
             { path: 'product', component: ProductListComponent },
-            { path: 'product/new', component: ProductComponent}
+            { path: 'product/new', component: ProductComponent},
+            { path: 'product/:id', component: ProductComponent}
         ]
     },
     { path: 'login', component: LoginComponent },

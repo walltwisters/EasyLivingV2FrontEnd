@@ -17,8 +17,9 @@ export class ProductService {
     return this.http.get<Product[]>(`${config.apiUrl}/products/`);
   }
 
-  show(){
-
+  show(id: Number){
+    debugger;
+    return this.http.get<Product>(`${config.apiUrl}/products/${id}`);
   }
 
   create(product: any){
