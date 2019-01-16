@@ -1,19 +1,22 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
-import { UserService } from '../_services';
+import { User } from '../../_models';
+import { UserService } from '../../_services';
 
-@Component({templateUrl: 'home.component.html'})
-export class HomeComponent implements OnInit {
+@Component( {
+    templateUrl: 'user.component.html',
+    styleUrls: ['user.component.css']
+})
+export class UserComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
-    dropdown: Boolean = false;
 
-    constructor(private userService: UserService) {
+    constructor(private userService : UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
+    };
 
+    
     ngOnInit() {
         this.loadAllUsers();
     }
@@ -24,13 +27,10 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    toggleDropdown() {
-        this.dropdown = !this.dropdown;
-    }
-
     private loadAllUsers() {
         this.userService.getAll().pipe(first()).subscribe(users => { 
             this.users = users; 
         });
     }
+
 }

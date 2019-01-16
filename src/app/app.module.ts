@@ -13,10 +13,12 @@ import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertService, AuthenticationService, UserService, ProductService, CategoryService } from './_services';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
-import { ProductComponent } from './product';
+import { MenuComponent } from './_components/menu';
+import { HomeComponent } from './_components/home';
+import { LoginComponent } from './_components/login';
+import { RegisterComponent } from './_components/register';
+import { ProductComponent } from './_components/product';
+import { UserComponent } from './_components/user';
 
 @NgModule({
     imports: [
@@ -31,7 +33,9 @@ import { ProductComponent } from './product';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        ProductComponent
+        ProductComponent,
+        MenuComponent,
+        UserComponent
     ],
     providers: [
         AuthGuard,

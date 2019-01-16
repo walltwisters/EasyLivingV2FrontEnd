@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 
-import { ProductService, AlertService, CategoryService } from '../_services';
-import { Category } from '../_models';
+import { ProductService, AlertService, CategoryService } from '../../_services';
+import { Category } from '../../_models';
 
 @Component({templateUrl: 'product.component.html'})
 export class ProductComponent implements OnInit {
