@@ -17,7 +17,7 @@ import { MenuComponent } from './_components/menu';
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
 import { RegisterComponent } from './_components/register';
-import { ProductComponent } from './_components/product';
+import { ProductComponent, ProductListComponent } from './_components/product';
 import { UserComponent } from './_components/user';
 
 @NgModule({
@@ -35,7 +35,8 @@ import { UserComponent } from './_components/user';
         RegisterComponent,
         ProductComponent,
         MenuComponent,
-        UserComponent
+        UserComponent,
+        ProductListComponent
     ],
     providers: [
         AuthGuard,

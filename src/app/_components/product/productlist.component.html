@@ -1,0 +1,11 @@
+<button [routerLink]="['/product/new']" class="btn btn-primary">New</button>
+<ul>
+    <li *ngFor="let product of products">
+        <figure>
+            <img src="{{product.imageUrl}}" alt="">
+        </figure>
+        <h3>{{ product.name}}</h3>
+        <h5>{{ product.price}}</h5>
+        <p>{{product.description}}</p>
+    </li>
+</ul>
