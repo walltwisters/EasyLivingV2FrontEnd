@@ -6,7 +6,7 @@ import { UserService } from '../../_services';
 
 @Component( {
     templateUrl: 'user.component.html',
-    styleUrls: ['user.component.css']
+    styleUrls: ['../../../css/app.css','user.component.css']
 })
 export class UserComponent implements OnInit {
     currentUser: User;
@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     };
 
-    
+
     ngOnInit() {
         this.loadAllUsers();
     }

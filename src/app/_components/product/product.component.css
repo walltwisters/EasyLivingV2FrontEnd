@@ -1,0 +1,23 @@
+.product__image {
+    width: 100%;
+    text-align: center;
+}
+
+.product__delete-button {
+    float: right;
+}
+
+.easy-wrapper {
+    width: 100%;
+    padding: 24px 0;
+   
+}
+.easy-wrapper:after{
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.product__image > img{
+    max-width: 100%;
+}   

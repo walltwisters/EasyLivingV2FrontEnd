@@ -2,10 +2,9 @@
 
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
-import { RegisterComponent } from './_components/register';
 import { AuthGuard } from './_guards';
 import { ProductComponent, ProductListComponent } from './_components/product';
-import { UserComponent } from './_components/user';
+import { UserComponent, RegisterComponent } from './_components/user';
 
 const appRoutes: Routes = [
     { 

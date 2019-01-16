@@ -4,7 +4,7 @@ import { Router, NavigationStart, RouterEvent } from '@angular/router';
 @Component({
     selector: 'easy-menu',
     templateUrl: 'menu.component.html',
-    styleUrls: ['menu.component.css']
+    styleUrls: ['../../../css/app.css','menu.component.css']
 })
 export class MenuComponent implements OnInit {
     

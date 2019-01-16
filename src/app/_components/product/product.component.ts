@@ -1,21 +1,25 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first, switchMap } from 'rxjs/operators';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
-import { ProductService, AlertService, CategoryService } from '../../_services';
+import { ProductService, AlertService, CategoryService, ImageService } from '../../_services';
 import { Category, Product } from '../../_models';
 
-@Component({templateUrl: 'product.component.html'})
+@Component({
+    templateUrl: 'product.component.html',
+    styleUrls: ['../../../css/app.css', 'product.component.css']
+})
 export class ProductComponent implements OnInit {
     productForm: FormGroup;
     loading = false;
     submitted = false;
     formData: FormData;
-    product: any;
+    product: Product;
     categories : Category[] = [];
     private idSubscription: any;
+    edit: boolean = false;
     id : Number = 0;
     @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -25,7 +29,8 @@ export class ProductComponent implements OnInit {
         private formBuilder: FormBuilder,
         private productService: ProductService,
        // private alertService: AlertService,
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private imageService: ImageService
     ) { }
 
     ngOnInit() {
@@ -34,12 +39,14 @@ export class ProductComponent implements OnInit {
             price: ['', Validators.required],
             description: ['', Validators.required],
             categories: [],
-            image: null
+            image: [null, Validators.required]
         });
         this.loadAllCategories();
         this.getRouteId();
+        this.edit = false;
         if(this.id)
         {
+            this.edit = true;
             this.loadProduct();
         }
          
@@ -63,6 +70,17 @@ export class ProductComponent implements OnInit {
         }
     }
 
+    deleteProductImage() {
+        this.imageService.deleteImage(this.product.imageurl).subscribe( () => {
+            this.edit = false;
+        })
+        this.edit = false;
+    }
+
+    updateOrSave() {
+        return this.edit ? "Update" : " Save";
+    }
+
     private loadAllCategories() {
         this.categoryService.get().pipe(first()).subscribe(categories => { 
             this.categories = categories; 
@@ -73,20 +91,23 @@ export class ProductComponent implements OnInit {
         this.idSubscription = this.route.params
             .subscribe( params => {
                 this.id = params['id'];
-                console.log(this.id);
             })   
-        }
+    }
             
     private loadProduct() {
-        return this.productService.show(this.id);
-        //var id = this.route.params.subscribe()
-        // debugger;
-        // this.product = this.route.paramMap.pipe( 
-            // switchMap( (params : ParamMap) => {
-            //     debugger;
-            //     return this.productService.show(params.get("id"))
-            // })
-        //);
+        return this.productService.show(this.id).subscribe( product => {
+            this.product = product;
+            console.log(this.product);
+            //this.productForm.setValue(this.product);
+            this.productForm.get('name').setValue(this.product.name);
+            this.productForm.get('price').setValue(this.product.price);
+            this.productForm.get('description').setValue(this.product.description);
+            
+        });
+    }
+
+    public createImagePath(path : String) {
+        return `${config.apiUrl}/${path}`;
     }
 }
 

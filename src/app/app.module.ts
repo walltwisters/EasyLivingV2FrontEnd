@@ -12,13 +12,12 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService, ProductService, CategoryService } from './_services';
+import { AlertService, AuthenticationService, UserService, ProductService, CategoryService, ImageService } from './_services';
 import { MenuComponent } from './_components/menu';
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
-import { RegisterComponent } from './_components/register';
 import { ProductComponent, ProductListComponent } from './_components/product';
-import { UserComponent } from './_components/user';
+import { UserComponent, RegisterComponent } from './_components/user';
 
 @NgModule({
     imports: [
@@ -45,6 +44,7 @@ import { UserComponent } from './_components/user';
         UserService,
         ProductService,
         CategoryService,
+        ImageService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

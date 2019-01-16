@@ -18,8 +18,7 @@ export class ProductService {
   }
 
   show(id: Number){
-    debugger;
-    return this.http.get<Product>(`${config.apiUrl}/products/${id}`);
+    return this.http.get<Product>(`${config.apiUrl}/products/show/${id}`);
   }
 
   create(product: any){
@@ -40,4 +39,6 @@ export class ProductService {
   delete() {
 
   }
+
+  
 }
