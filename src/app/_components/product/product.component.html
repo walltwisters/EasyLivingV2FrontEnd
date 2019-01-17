@@ -4,15 +4,9 @@
         <button [routerLink]="['/product']" class="btn btn-primary"><-back</button>
     </div>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" >
-        <div class="form-group easy-form-group">
-            <label *ngIf="!edit" for="image">image</label>
-            <input type="file" (change)="onImageAdded($event)" accept="image/*;capture=camera" id="image" class="form-control-file" #fileInput>
-            <div *ngIf="edit && product" class="easy-wrapper">
-                <figure class="product__image">
-                    <img [src]="createImagePath(product.imageUrl)" alt="">
-                </figure>
-                <button (click)="deleteProductImage()" class="btn btn-danger product__delete-button">Delete</button>
-            </div>
+        <div class="form-group file-input__wrapper">
+            <input class="file-input" type="file" (change)="onImageAdded($event)" accept="image/*;capture=camera" id="image" class="form-control-file" #fileInput>
+            <label class="file-input__label" for="image">{{ getFileName }}</label>
         </div>
         <div clas="form-group" >
             <label for="name">name</label>

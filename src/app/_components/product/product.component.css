@@ -7,8 +7,21 @@
     float: right;
 }
 
-.easy-form-group {
+input[type=file] {
+    color: transparent;
+    width: 40%;
+    max-width: 100px;
+}
+
+.file-input__wrapper {
+    margin-top: 24px;
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.file-input__label {
+    width: 40%;
 }
 
 .easy-wrapper {

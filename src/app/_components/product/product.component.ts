@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
     formData: FormData;
     product: Product;
     categories : Category[] = [];
+    fileName : String = "upload image";
     private idSubscription: any;
     edit: boolean = false;
     id : Number = 0;
@@ -39,7 +40,7 @@ export class ProductComponent implements OnInit {
             price: ['', Validators.required],
             description: ['', Validators.required],
             categories: [this.formBuilder.array([]), null],
-            image: [null, Validators.required]
+            image: [null, null]
         });
         this.loadAllCategories();
         this.getRouteId();
@@ -52,6 +53,7 @@ export class ProductComponent implements OnInit {
          
     }
     get f() { return this.productForm.controls; }
+    get getFileName() { return this.fileName; }
 
     onSubmit() {
         this.submitted = true;
@@ -60,12 +62,11 @@ export class ProductComponent implements OnInit {
             return;
         };
         if(this.edit) {
-            this.productService.update(this.productForm.value, this.product.id).
+            this.productService.update(this.productForm.value, this.product.id, this.product.imageUrl).
             pipe( first() ).
             subscribe(
                 data => {
                     this.alertService.success("uploaded succesfully");
-                    this.router.navigate(['/products']);
                 },
                 error => {
                     this.alertService.error(error);
@@ -89,6 +90,7 @@ export class ProductComponent implements OnInit {
     onImageAdded(event: any) {
         if(event.target.files && event.target.files.length > 0) {
             let file = event.target.files[0];
+            this.fileName = file.name;
             this.productForm.get('image').setValue(file);
         }
     }
@@ -125,6 +127,7 @@ export class ProductComponent implements OnInit {
             this.productForm.get('description').setValue(this.product.description);
             var cs = product.categoryIds.split(",");
             var ics = cs.map( c => parseInt(c));
+            this.fileName = this.product.imageUrl;
             this.productForm.get('categories').patchValue(ics);
         });
     }
@@ -132,6 +135,10 @@ export class ProductComponent implements OnInit {
     public createImagePath(path : String) {
         return `${config.apiUrl}/${path}`;
     }
+
+    
+        
+    
 }
 
    

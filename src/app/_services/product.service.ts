@@ -31,11 +31,24 @@ export class ProductService {
     return this.http.post(`${config.apiUrl}/products/create`, fm);
   }
 
-  update(product: any, id: Number) {
-    return this.http.put<Product>(`${config.apiUrl}/products/update/${id}`, product);
+  update(product: any, id: Number, imageUrl: any) {
+    var fm = this.prepareFormData(product);
+    fm.append("imageUrl", imageUrl);
+    return this.http.put<Product>(`${config.apiUrl}/products/update/${id}`, fm);
   }
 
   delete() {
+
+  }
+
+  private prepareFormData(product: any) {
+    var fm = new FormData();
+    fm.append("Image", product.image);
+    fm.append("Name", product.name);
+    fm.append("Description", product.description);
+    fm.append("Price", product.price);
+    fm.append("CategoryIds", product.categories);
+    return fm;
 
   }
 
