@@ -7,17 +7,23 @@
     float: right;
 }
 
+.easy-form-group {
+    display: flex;
+}
+
 .easy-wrapper {
-    width: 100%;
+    width: 20%;
     padding: 24px 0;
    
-}
-.easy-wrapper:after{
-    content: "";
-    clear: both;
-    display: block;
 }
 
 .product__image > img{
     max-width: 100%;
 }   
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px lightgray solid;
+    padding: 10px 0;
+}

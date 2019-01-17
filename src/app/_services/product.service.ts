@@ -23,7 +23,6 @@ export class ProductService {
 
   create(product: any){
     var fm = new FormData();
-    debugger;
     fm.append("Image", product.image);
     fm.append("Name", product.name);
     fm.append("Description", product.description);
@@ -32,8 +31,8 @@ export class ProductService {
     return this.http.post(`${config.apiUrl}/products/create`, fm);
   }
 
-  update() {
-
+  update(product: any, id: Number) {
+    return this.http.put<Product>(`${config.apiUrl}/products/update/${id}`, product);
   }
 
   delete() {

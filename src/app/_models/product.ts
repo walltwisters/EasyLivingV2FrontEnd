@@ -3,6 +3,6 @@ export class Product {
     name: String;
     price: String;
     description: String;
-    imageurl: String;
-
+    imageUrl: String;
+    categoryIds: String;
 }

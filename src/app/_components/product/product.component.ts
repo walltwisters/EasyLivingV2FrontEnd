@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
         private router: Router,
         private formBuilder: FormBuilder,
         private productService: ProductService,
-       // private alertService: AlertService,
+        private alertService: AlertService,
         private categoryService: CategoryService,
         private imageService: ImageService
     ) { }
@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
             name : ['', Validators.required],
             price: ['', Validators.required],
             description: ['', Validators.required],
-            categories: [],
+            categories: [this.formBuilder.array([]), null],
             image: [null, Validators.required]
         });
         this.loadAllCategories();
@@ -51,16 +51,39 @@ export class ProductComponent implements OnInit {
         }
          
     }
+    get f() { return this.productForm.controls; }
 
     onSubmit() {
         this.submitted = true;
-        this.productService.create(this.productForm.value).
+        debugger;
+        if (this.productForm.invalid) {
+            return;
+        };
+        if(this.edit) {
+            this.productService.update(this.productForm.value, this.product.id).
             pipe( first() ).
             subscribe(
-                // data => {this.alertService.success("product uploaded", true) },
-                // error => { this.alertService.error(error) }
+                data => {
+                    this.alertService.success("uploaded succesfully");
+                    this.router.navigate(['/products']);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                }
+
+            )
+
+        } else {
+            this.productService.create(this.productForm.value).
+            pipe( first() ).
+            subscribe(
+                data => {this.alertService.success("product uploaded", true) },
+                error => { this.alertService.error(error) }
                 
             )
+        }
+       
     }
 
     onImageAdded(event: any) {
@@ -71,7 +94,7 @@ export class ProductComponent implements OnInit {
     }
 
     deleteProductImage() {
-        this.imageService.deleteImage(this.product.imageurl).subscribe( () => {
+        this.imageService.deleteImage(this.product.imageUrl).subscribe( () => {
             this.edit = false;
         })
         this.edit = false;
@@ -95,14 +118,14 @@ export class ProductComponent implements OnInit {
     }
             
     private loadProduct() {
-        return this.productService.show(this.id).subscribe( product => {
+        this.productService.show(this.id).subscribe( product => {
             this.product = product;
-            console.log(this.product);
-            //this.productForm.setValue(this.product);
             this.productForm.get('name').setValue(this.product.name);
             this.productForm.get('price').setValue(this.product.price);
             this.productForm.get('description').setValue(this.product.description);
-            
+            var cs = product.categoryIds.split(",");
+            var ics = cs.map( c => parseInt(c));
+            this.productForm.get('categories').patchValue(ics);
         });
     }
 
