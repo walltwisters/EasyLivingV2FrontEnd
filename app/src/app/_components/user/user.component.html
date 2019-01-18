@@ -1,0 +1,24 @@
+<section class="easy-container--main">
+    <div class="button-wrapper">
+            <button [routerLink]="['/user/new']" class="btn btn-primary">New</button>
+    </div>
+    <table class="table">
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col" class="user-table--lastname">LastName</th>
+            <th scope="col">role</th>
+            <th scope="col">Edit</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <td scope="row">{{ i + 1 }}</td>
+                <td>{{ user.firstName }} </td>
+                <td> {{ user.lastName}} </td>
+                <td>{{ user.username }}</td>
+                <td><button (click)="deleteUser(user.id)" class="btn btn-danger">delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+            
+</section>

@@ -1,0 +1,14 @@
+.easy-container--login {
+    height: 100vh;
+    width:100vw;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} 
+
+.login__content-wrapper {
+    padding: 1rem;
+    
+}

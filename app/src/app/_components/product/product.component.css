@@ -1,0 +1,55 @@
+.product__image {
+    width: 100%;
+    text-align: center;
+}
+
+.product__delete-button {
+    float: right;
+}
+
+input[type=file] {
+    color: transparent;
+    width: 40%;
+    max-width: 100px;
+}
+
+.file-input__wrapper {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.file-input__label {
+    width: 40%;
+}
+
+.file-input__element {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.easy-wrapper {
+    width: 20%;
+    padding: 24px 0;
+   
+}
+
+.product__image > img{
+    max-width: 100%;
+}   
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px lightgray solid;
+    padding: 10px 0;
+}
+
+.button__delete{
+    margin-left: 16px;
+}

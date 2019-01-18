@@ -1,0 +1,17 @@
+<section class="easy-container--main">
+    <div class="button-wrapper">
+        <button [routerLink]="['/product/new']" class="btn btn-primary btn--addproduct">New</button>
+    </div>
+    <ul class="products__wrapper">
+        <li *ngFor="let product of products" class="product" [routerLink]="['/product', product.id]">
+            <figure class="product__image">
+                <img [src]="createImagePath(product.imageUrl)" alt="">
+            </figure>
+            <div class="product__copy">
+                <h3 class="product__name">{{ product.name}}</h3>
+                <h5 class="product__price">{{ product.price}}</h5>
+                <p class="product__description">{{product.description}}</p>
+            </div>
+        </li>
+    </ul>
+</section>
