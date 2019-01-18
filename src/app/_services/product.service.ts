@@ -37,8 +37,8 @@ export class ProductService {
     return this.http.put<Product>(`${config.apiUrl}/products/update/${id}`, fm);
   }
 
-  delete() {
-
+  delete(id: Number) {
+    return this.http.delete(`${config.apiUrl}/products/delete/${id}`);
   }
 
   private prepareFormData(product: any) {

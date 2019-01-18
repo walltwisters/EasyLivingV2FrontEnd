@@ -57,7 +57,6 @@ export class ProductComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        debugger;
         if (this.productForm.invalid) {
             return;
         };
@@ -72,16 +71,13 @@ export class ProductComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 }
-
             )
-
         } else {
             this.productService.create(this.productForm.value).
             pipe( first() ).
             subscribe(
                 data => {this.alertService.success("product uploaded", true) },
                 error => { this.alertService.error(error) }
-                
             )
         }
        
@@ -95,15 +91,24 @@ export class ProductComponent implements OnInit {
         }
     }
 
-    deleteProductImage() {
-        this.imageService.deleteImage(this.product.imageUrl).subscribe( () => {
-            this.edit = false;
-        })
-        this.edit = false;
-    }
-
     updateOrSave() {
         return this.edit ? "Update" : " Save";
+    }
+
+    deleteProduct() {
+        this.productService.delete(this.product.id).pipe( first())
+            .subscribe( 
+                data => {
+                    this.alertService.success("product deleted", true);
+                    this.productForm.reset();
+                    this.edit = false;
+                    this.product = null;
+                    this.fileName ="upload image";
+                },
+                error => { this.alertService.error(error) }
+            );
+
+            
     }
 
     private loadAllCategories() {

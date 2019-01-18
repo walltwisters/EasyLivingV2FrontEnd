@@ -40,3 +40,7 @@ input[type=file] {
     border-bottom: 1px lightgray solid;
     padding: 10px 0;
 }
+
+.button__delete{
+    margin-left: 16px;
+}
