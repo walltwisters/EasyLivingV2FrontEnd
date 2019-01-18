@@ -16,8 +16,5 @@ export class CategoryService {
   get(){
         return this.http.get<Category[]>(`${config.apiUrl}/categories`);
   }
-
-  show(){
-
-  }
+  
 }

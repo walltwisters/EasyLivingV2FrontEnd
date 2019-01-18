@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
-import { ProductService, AlertService, CategoryService, ImageService } from '../../_services';
+import { ProductService, AlertService, CategoryService } from '../../_services';
 import { Category, Product } from '../../_models';
 
 @Component({
@@ -31,7 +31,6 @@ export class ProductComponent implements OnInit {
         private productService: ProductService,
         private alertService: AlertService,
         private categoryService: CategoryService,
-        private imageService: ImageService
     ) { }
 
     ngOnInit() {

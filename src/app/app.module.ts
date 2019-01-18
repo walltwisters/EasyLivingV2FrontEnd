@@ -3,16 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// used to create fake backend
-//import { fakeBackendProvider } from './_helpers';
-
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService, ProductService, CategoryService, ImageService } from './_services';
+import { AlertService, AuthenticationService, UserService, ProductService, CategoryService } from './_services';
 import { MenuComponent } from './_components/menu';
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
@@ -44,12 +41,9 @@ import { UserComponent, RegisterComponent } from './_components/user';
         UserService,
         ProductService,
         CategoryService,
-        ImageService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-        // provider used to create fake backend
-       // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

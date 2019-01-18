@@ -3,3 +3,11 @@
     justify-content: flex-end;
     margin: 16px 0;
 }
+
+.user-table--lastname {
+    
+}
+
+@media (min-width: 600px) {
+    
+}
