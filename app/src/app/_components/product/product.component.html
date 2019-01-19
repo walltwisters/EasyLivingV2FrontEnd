@@ -5,9 +5,11 @@
     </div>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" >
         <div class="form-group file-input__wrapper">
-            <input class="file-input" type="file" (change)="onImageAdded($event)" accept="image/*" capture="camera" id="image" class="file-input__element" #fileInput>
-            <label class="btn btn-success" for="image">Upload Image</label>
-            <div class="file-input__label">{{ getFileName }}</div>
+            <input class="file-input" type="file" (change)="onImageAdded($event)" accept="image/*"  id="image" class="file-input__element" #fileInput>
+            <!-- <label class="btn btn-success" for="image">Upload Image</label> -->
+        </div>
+        <div *ngIf="edit" class="file-input__label form-group" style="color: green">
+            CurrentImage: {{ getFileName }}
         </div>
         <div clas="form-group" >
             <label for="name">name</label>

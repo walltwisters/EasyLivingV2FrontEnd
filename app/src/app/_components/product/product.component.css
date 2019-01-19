@@ -7,30 +7,35 @@
     float: right;
 }
 
-input[type=file] {
-    color: transparent;
-    width: 40%;
-    max-width: 100px;
+@media(min-width) {
+    input[type=file] {
+        color: transparent;
+        width: 20%; 
+        max-width: 100px;
+    }
+
+    .file-input__wrapper {
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
 }
 
-.file-input__wrapper {
-    margin-top: 24px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
+
+
 
 .file-input__label {
     width: 40%;
 }
 
 .file-input__element {
-    width: 0.1px;
+    /* width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
-	z-index: -1;
+	z-index: 100; */
 }
 
 .easy-wrapper {
