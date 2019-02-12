@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        debugger;
         this.loading = true;
         this.userService.register(this.registerForm.value)
             .pipe(first())

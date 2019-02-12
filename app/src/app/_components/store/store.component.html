@@ -1,0 +1,34 @@
+<section class="easy-container--main">
+    <div class="header">
+        <h1>Store</h1>
+        <button [routerLink]="['/']" class="btn btn-primary"><-back</button>
+    </div>
+    <form [formGroup]="storeForm" (ngSubmit)="onSubmit()" >
+        <div class="form-group">
+            <div class="form-check" >
+                <input id="opentrue" name="open" type="radio" class="form-check-input" formControlName="open" value="true" >
+                <label for="opentrue" class="form-check-label">open</label>
+            </div>
+            <div class="form-check" >
+                <input class="form-check-input" id="openfalse" name="open" type="radio" formControlName="open" value="false">
+                <label class="form-check-label" for="openfalse">close</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="openingtime">opening at:</label>
+            <input id="openingtime" type="time" class="form-control" formControlName="openingAt"/>
+        </div>
+        <div class="form-group">
+            <label for="closingtime">closing at:</label>
+            <input id="closingtime" type="time" class="form-control" formControlName="closingAt"/>
+        </div>
+        <alert></alert>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Submit</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+        
+        
+    </form>
+
+</section>
