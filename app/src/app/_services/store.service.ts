@@ -16,7 +16,6 @@ export class StoreService {
   
 
   update(t: any) {
-    debugger;
     var openingTimes = {
        times : `${t.openingAt}-${t.closingAt}`,
        open : t.open
