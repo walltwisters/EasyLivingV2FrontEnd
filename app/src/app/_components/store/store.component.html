@@ -3,24 +3,21 @@
         <h1>Store</h1>
         <button [routerLink]="['/']" class="btn btn-primary"><-back</button>
     </div>
+    
     <form [formGroup]="storeForm" (ngSubmit)="onSubmit()" >
         <div class="form-group">
             <div class="form-check" >
-                <input id="opentrue" name="open" type="radio" class="form-check-input" formControlName="open" value="true" >
-                <label for="opentrue" class="form-check-label">open</label>
+                <input id="homepage" type="radio" class="form-check-input" formControlName="page" value="homepage" >
+                <label for="homepage" class="form-check-label">Homepage</label>
             </div>
             <div class="form-check" >
-                <input class="form-check-input" id="openfalse" name="open" type="radio" formControlName="open" value="false">
-                <label class="form-check-label" for="openfalse">close</label>
+                <input class="form-check-input" id="contactpage"  type="radio" formControlName="page" value="contactpage">
+                <label class="form-check-label" for="openfalse">contactpage</label>
             </div>
         </div>
         <div class="form-group">
-            <label for="openingtime">opening at:</label>
-            <input id="openingtime" type="time" class="form-control" formControlName="openingAt"/>
-        </div>
-        <div class="form-group">
-            <label for="closingtime">closing at:</label>
-            <input id="closingtime" type="time" class="form-control" formControlName="closingAt"/>
+            <label for="pageinfo">Info</label>
+            <textarea id="pageinfo" class="form-control" formControlName="info"></textarea>
         </div>
         <alert></alert>
         <div class="form-group">

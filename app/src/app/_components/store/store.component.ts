@@ -1,11 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router';
-
 
 import { AlertService, StoreService } from '../../_services';
-//import { Category, Product } from '../../_models';
+import { Store } from '../../_models';
+
 
 @Component({
     templateUrl: 'store.component.html',
@@ -15,20 +14,24 @@ export class StoreComponent implements OnInit {
     storeForm: FormGroup;
     loading = false;
     submitted = false;
+    store: Store;
    
     constructor(
-        private route : ActivatedRoute,
         private formBuilder: FormBuilder,
         private alertService: AlertService,
         private storeService: StoreService
     ) { }
 
     ngOnInit() {
+        this.store = new Store();
+        this.store.contactInfo = "";
+        this.store.homeInfo= "";
         this.storeForm = this.formBuilder.group({
-            open : [ false, Validators.required],
-            openingAt : ['', Validators.required],
-            closingAt : [ '', Validators.required]
+            page : [ "homepage", Validators.required],
+            info : [this.store.homeInfo, Validators.required] 
         });
+        this.loadStore();
+        this.onFormPageChange();
         
          
     }
@@ -41,12 +44,14 @@ export class StoreComponent implements OnInit {
         if (this.storeForm.invalid) {
             return;
         };
+        console.log(this.storeForm.value);
         this.loading = true;
         this.storeService.update(this.storeForm.value).
             pipe( first() ).
             subscribe(
                 data => {
-                    this.alertService.success("times updated", true);
+                    this.loading = false;
+                    this.alertService.success("info updated", true);
                 },
                 error => {
                     this.alertService.error(error);
@@ -55,6 +60,32 @@ export class StoreComponent implements OnInit {
             )
         
        
+    }
+
+    private loadStore() {
+        this.storeService.get().subscribe( store => {
+            this.store = store;
+            if(this.storeForm.value.page === "contactpage"){
+                this.storeForm.get("info").setValue(this.store.contactInfo);
+            } else {
+                debugger;
+                this.storeForm.get("info").setValue(this.store.homeInfo);
+            }
+          
+            
+        });
+    }
+
+    private onFormPageChange() {
+        this.storeForm.get("page").valueChanges.subscribe( val => {
+            if(val === "homepage") {
+                this.storeForm.get("info").setValue(this.store.homeInfo);
+            } else if(val === 'contactpage') {
+                this.storeForm.get("info").setValue(this.store.contactInfo);
+            } else {
+                console.log("onFormChange error");
+            }
+        })
     }
 
    
