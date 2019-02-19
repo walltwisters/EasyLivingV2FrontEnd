@@ -13,6 +13,7 @@ import { AlertService, AuthenticationService, UserService, ProductService, Categ
 import { MenuComponent } from './_components/menu';
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
+import { CategoryListComponent, CategoryComponent} from './_components/categories';
 import { ProductComponent, ProductListComponent } from './_components/product';
 import { UserComponent, RegisterComponent } from './_components/user';
 import {StoreComponent } from './_components/store';
@@ -34,7 +35,9 @@ import {StoreComponent } from './_components/store';
         MenuComponent,
         UserComponent,
         ProductListComponent,
-        StoreComponent
+        StoreComponent,
+        CategoryComponent,
+        CategoryListComponent
     ],
     providers: [
         AuthGuard,

@@ -1,0 +1,21 @@
+<section class="easy-container--main">
+    <alert></alert>
+    <div class="button-wrapper">
+            <button [routerLink]="['/categories/new']" class="btn btn-primary">New</button>
+    </div>
+    <table class="table">
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Delete</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories; let i = index">
+                <td scope="row">{{ i + 1 }}</td>
+                <td>{{ category.name }} </td>
+                <td><button (click)="deleteCategory(category.id)" class="btn btn-danger">delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+            
+</section>

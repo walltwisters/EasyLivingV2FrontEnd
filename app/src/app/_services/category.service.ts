@@ -14,7 +14,15 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   get(){
-        return this.http.get<Category[]>(`${config.apiUrl}/categories`);
+    return this.http.get<Category[]>(`${config.apiUrl}/categories`);
+  }
+
+  create(category : Category) {
+    return this.http.post(`${config.apiUrl}/categories/create`, category);
+  }
+
+  delete(id : Number) {
+    return this.http.delete(`${config.apiUrl}/categories/${id}`);
   }
   
 }

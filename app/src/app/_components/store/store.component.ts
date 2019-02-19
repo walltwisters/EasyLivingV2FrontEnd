@@ -40,7 +40,6 @@ export class StoreComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        debugger;
         if (this.storeForm.invalid) {
             return;
         };
@@ -68,7 +67,6 @@ export class StoreComponent implements OnInit {
             if(this.storeForm.value.page === "contactpage"){
                 this.storeForm.get("info").setValue(this.store.contactInfo);
             } else {
-                debugger;
                 this.storeForm.get("info").setValue(this.store.homeInfo);
             }
           

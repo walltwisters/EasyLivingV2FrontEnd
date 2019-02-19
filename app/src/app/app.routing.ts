@@ -5,6 +5,7 @@ import { AuthGuard } from './_guards';
 import { ProductComponent, ProductListComponent } from './_components/product';
 import { UserComponent, RegisterComponent } from './_components/user';
 import { StoreComponent } from './_components/store';
+import {CategoryListComponent, CategoryComponent } from './_components/categories';
 
 const appRoutes: Routes = [
     { 
@@ -17,7 +18,9 @@ const appRoutes: Routes = [
             { path: 'product', component: ProductListComponent },
             { path: 'product/new', component: ProductComponent},
             { path: 'product/:id', component: ProductComponent},
-            { path: 'store', component: StoreComponent }
+            { path: 'store', component: StoreComponent },
+            {path: 'categories', component: CategoryListComponent},
+            {path: 'categories/new', component: CategoryComponent}
         ]
     },
     { path: 'login', component: LoginComponent },
